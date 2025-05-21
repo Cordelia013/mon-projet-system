@@ -98,6 +98,10 @@ import { useGrid } from "./grid";
 const { currentBreakpoint, isGridVisible, toggleGrid } = useGrid();
 
 ```
+### Mode Dev Only
+L’Overlay Grid ne s’affiche jamais en production (`import.meta.env.PROD`), même si le raccourci ou le bouton sont activés.
+
+
 🕹️ Raccourcis et Dev Mode
 Afficher/masquer la grille :
 ➔ Raccourci clavier Alt+G
@@ -124,12 +128,10 @@ Je ne vois pas la grille ou les marges/gouttières ?
 
 🚩 TODO / Idées d’évolution
 Overlay avec dégradé ou pattern custom
-
 Tooltips px/rem sur chaque colonne/gouttière/marge
-
 Version dark mode
 
-Mode “dev only” auto (masqué en prod)
+
 
 👩‍💻 Crédit & Auteurs
 Template initié par cordelia guims / Cazalyn

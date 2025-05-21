@@ -11,6 +11,14 @@ const BORDER_COL = "#14e7ff";
 const BORDER_MARGIN = "#e5d92a";
 
 export const GridOverlay: React.FC = () => {
+  // 🆕 Hook de resize
+  const [, setWin] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    const onResize = () => setWin(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const { isGridVisible, currentBreakpoint } = useGrid();
   if (!isGridVisible) return null;
 
