@@ -1,54 +1,148 @@
-# React + TypeScript + Vite
+# 🎛️ Grid System Template – React + Tailwind v4
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un template prêt à l'emploi pour intégrer un **système de grille modulaire et visuel** dans vos projets React, inspiré des meilleures pratiques UI/UX pros.  
+Gestion responsive, overlay développeur (colonnes, gouttières, marges), configuration centralisée : tout pour maquetter et designer vite, bien, et sans prise de tête.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Installation
 
-## Expanding the ESLint configuration
+### 1. Cloner ce repo & installer les dépendances
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+git clone <url-de-votre-repo>
+cd mon-projet-system
+npm install
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+2. Lancer le serveur de dev
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🏗️ Structure du projet
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+src/
+├── grid/
+│   ├── config/        # Configuration des breakpoints
+│   ├── context/       # Provider & contexte React pour la grille
+│   ├── hooks/         # Hooks utilitaires
+│   ├── components/    # Composants Grid, Overlay, Control...
+│   ├── types/         # Typescript types
+│   └── index.ts       # Export centralisé
+└── App.tsx
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```
+
+⚡ Utilisation de la Grid
+
+Branchez la grille dans votre app principale :
+
+```bash
+import {
+  GridProvider,
+  Grid,
+  GridOverlay,
+  GridControl
+} from "./grid";
+
+export default function App() {
+  return (
+    <GridProvider>
+      <GridControl />
+      <GridOverlay />
+      <div className="p-8">
+        <h1 className="text-2xl font-bold mb-4">Démo Grid System</h1>
+        <Grid>
+          <div className="bg-blue-100 p-4">Col 1</div>
+          <div className="bg-blue-200 p-4">Col 2</div>
+          <div className="bg-blue-300 p-4">Col 3</div>
+          <div className="bg-blue-400 p-4">Col 4</div>
+        </Grid>
+      </div>
+    </GridProvider>
+  );
+}
+
+```
+GridControl : bouton pour afficher/masquer la grille ou utiliser Alt+G
+
+GridOverlay : overlay visuel des colonnes, gouttières et marges (dev only)
+
+Grid : composant grille responsive pour aligner vos UI
+
+🎨 Personnalisation
+Breakpoints, colonnes, gouttières, marges :
+➔ Modifier src/grid/config/breakpoints.ts
+
+Couleur de l’overlay (colonnes, gouttières, marges) :
+➔ Personnaliser les props dans GridOverlay
+
+Exemple :
+
+```bash
+<GridOverlay color="#f81ce5" borderColor="#f81ce5" opacity={0.14} />
+
+```
+Gap et margin Tailwind :
+➔ Les mappings sont dans Grid.tsx, adapter si besoin (gap-x-, mx-, etc.)
+
+🧩 Avancé : Hook d’accès à la grid
+Accédez à l’état courant avec le hook :
+
+```bash
+import { useGrid } from "./grid";
+
+const { currentBreakpoint, isGridVisible, toggleGrid } = useGrid();
+
+```
+🕹️ Raccourcis et Dev Mode
+Afficher/masquer la grille :
+➔ Raccourci clavier Alt+G
+➔ Ou bouton flottant GridControl
+
+Démo responsive :
+➔ Redimensionner la fenêtre pour voir le changement de breakpoints (et donc de colonnes, gouttières, marges, overlay...)
+
+🛠️ Bonnes pratiques
+Centralisez la config dans breakpoints.ts pour la maintenance
+
+Utilisez l’Overlay pour caler vos designs (supprimez-le en prod !)
+
+Adaptez les couleurs et valeurs à votre charte UI
+
+Pour l’intégration prod, désactivez l’Overlay via une variable d’environnement si besoin
+
+🤔 FAQ
+Pourquoi ne pas générer dynamiquement les classes Tailwind ?
+➔ Tailwind purge toutes les classes dynamiques, donc seules les classes écrites en dur dans le code seront générées.
+
+Je ne vois pas la grille ou les marges/gouttières ?
+➔ Vérifiez que l’Overlay est bien activé, que les valeurs de breakpoints sont correctes, et que vous avez bien redimensionné la fenêtre pour tester tous les cas.
+
+🚩 TODO / Idées d’évolution
+Overlay avec dégradé ou pattern custom
+
+Tooltips px/rem sur chaque colonne/gouttière/marge
+
+Version dark mode
+
+Mode “dev only” auto (masqué en prod)
+
+👩‍💻 Crédit & Auteurs
+Template initié par cordelia guims / Cazalyn
+Feel free to fork, modifier, améliorer, pull-requester.
+Pour tout bug ou suggestion : cordeliaguims@outlook.com
+
+
+
+```yaml
+
+
+
+Tu veux une version EN, un ajout “screenshots”, une section “contribution”, ou une table récap’ des props et composants ?  
+Dis-moi, je te la complète direct selon ton branding/DA !
+
 ```
