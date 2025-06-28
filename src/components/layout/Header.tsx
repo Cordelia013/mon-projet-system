@@ -20,6 +20,12 @@ export function Header() {
                 Accueil
               </Link>
               <Link 
+                href="/demo" 
+                className="text-sm font-medium text-secondary-700 hover:text-primary-600 transition-colors"
+              >
+                Démo
+              </Link>
+              <Link 
                 href="/about" 
                 className="text-sm font-medium text-secondary-700 hover:text-primary-600 transition-colors"
               >
@@ -38,9 +44,11 @@ export function Header() {
             <Button variant="ghost" size="sm">
               Se connecter
             </Button>
-            <Button size="sm">
-              S'inscrire
-            </Button>
+            <Link href="/demo">
+              <Button size="sm">
+                🚀 Essayer
+              </Button>
+            </Link>
           </div>
         </div>
       </Container>

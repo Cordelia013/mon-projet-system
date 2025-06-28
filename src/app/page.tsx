@@ -2,6 +2,7 @@ import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Layout } from '@/components/layout/Layout'
+import Link from 'next/link'
 
 // Server Component par défaut
 export default function HomePage() {
@@ -52,12 +53,21 @@ export default function HomePage() {
               Tailwind CSS et React Server Components.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">
-                Commencer
-              </Button>
+              <Link href="/demo">
+                <Button size="lg">
+                  🚀 Essayer le Template
+                </Button>
+              </Link>
               <Button variant="outline" size="lg">
-                Documentation
+                📚 Documentation
               </Button>
+            </div>
+            
+            {/* Grid Tip */}
+            <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto">
+              <p className="text-blue-800 text-sm">
+                💡 Appuyez sur <kbd className="bg-blue-100 px-2 py-1 rounded text-xs font-mono">Alt + G</kbd> pour voir la grille
+              </p>
             </div>
           </div>
         </Container>
@@ -91,6 +101,62 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* Demo Preview Section */}
+      <section className="py-20 bg-secondary-50">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+              Découvrez le Template en Action
+            </h2>
+            <p className="text-lg text-secondary-600 max-w-2xl mx-auto mb-8">
+              Explorez toutes les fonctionnalités avec notre démonstration interactive complète.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <Card className="text-center">
+              <CardContent className="pt-6">
+                <div className="text-2xl mb-2">🎨</div>
+                <h3 className="font-semibold mb-2">Système de Grille</h3>
+                <p className="text-sm text-secondary-600">12 colonnes responsive avec overlay de débogage</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center">
+              <CardContent className="pt-6">
+                <div className="text-2xl mb-2">🧩</div>
+                <h3 className="font-semibold mb-2">Composants UI</h3>
+                <p className="text-sm text-secondary-600">Bibliothèque complète de composants</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center">
+              <CardContent className="pt-6">
+                <div className="text-2xl mb-2">🎭</div>
+                <h3 className="font-semibold mb-2">Animations</h3>
+                <p className="text-sm text-secondary-600">Animations CSS fluides et configurables</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center">
+              <CardContent className="pt-6">
+                <div className="text-2xl mb-2">📱</div>
+                <h3 className="font-semibold mb-2">Responsive</h3>
+                <p className="text-sm text-secondary-600">Design adaptatif pour tous les appareils</p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center">
+            <Link href="/demo">
+              <Button size="lg" className="text-lg px-8 py-4">
+                🎯 Voir la Démonstration Complète
+              </Button>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-primary-600">
         <Container>
@@ -101,9 +167,16 @@ export default function HomePage() {
             <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
               Clonez ce boilerplate et commencez à développer votre application dès maintenant.
             </p>
-            <Button variant="secondary" size="lg">
-              Télécharger
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/demo">
+                <Button variant="secondary" size="lg">
+                  🚀 Essayer Maintenant
+                </Button>
+              </Link>
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-600">
+                📥 Télécharger
+              </Button>
+            </div>
           </div>
         </Container>
       </section>
