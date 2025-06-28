@@ -1,150 +1,239 @@
-# 🎛️ Grid System Template – React + Tailwind v4
+# 🚀 NextJS Boilerplate
 
-Un template prêt à l'emploi pour intégrer un **système de grille modulaire et visuel** dans vos projets React, inspiré des meilleures pratiques UI/UX pros.  
-Gestion responsive, overlay développeur (colonnes, gouttières, marges), configuration centralisée : tout pour maquetter et designer vite, bien, et sans prise de tête.
+Un boilerplate moderne et optimisé pour vos projets Next.js avec TypeScript, Tailwind CSS et React Server Components.
 
----
+## ✨ Fonctionnalités
+
+- **Next.js 15** - Dernière version avec App Router et React Server Components
+- **TypeScript** - Configuration stricte pour un développement type-safe
+- **Tailwind CSS** - Framework CSS utilitaire avec configuration personnalisée
+- **Structure optimisée** - Architecture modulaire avec séparation des préoccupations
+- **Configuration centralisée** - Couleurs, typographie, espacement et breakpoints
+- **Composants UI** - Bibliothèque de composants réutilisables et accessibles
+- **SEO optimisé** - Métadonnées configurées pour le référencement
+- **Responsive design** - Design adaptatif pour tous les appareils
+
+## 🏗️ Structure du projet
+
+```
+src/
+├── app/                    # App Router (Next.js 13+)
+│   ├── globals.css        # Styles globaux
+│   ├── layout.tsx         # Layout racine
+│   └── page.tsx           # Page d'accueil
+├── components/            # Composants React
+│   ├── ui/               # Composants UI réutilisables
+│   └── layout/           # Composants de mise en page
+├── config/               # Configuration centralisée
+│   ├── colors.ts         # Palette de couleurs
+│   ├── typography.ts     # Configuration typographique
+│   ├── spacing.ts        # Système d'espacement
+│   ├── breakpoints.ts    # Points de rupture responsive
+│   └── animations.ts     # Animations et transitions
+├── lib/                  # Utilitaires et helpers
+├── types/                # Types TypeScript
+└── styles/               # Styles additionnels
+```
 
 ## 🚀 Installation
 
-### 1. Cloner ce repo & installer les dépendances
-
+1. **Cloner le projet**
 ```bash
-git clone <url-de-votre-repo>
-cd mon-projet-system
-npm install
-
+git clone <url-du-repo>
+cd nextjs-boilerplate
 ```
-2. Lancer le serveur de dev
 
+2. **Installer les dépendances**
+```bash
+npm install
+```
+
+3. **Lancer le serveur de développement**
 ```bash
 npm run dev
 ```
 
-🏗️ Structure du projet
-
-```bash
-src/
-├── grid/
-│   ├── config/        # Configuration des breakpoints
-│   ├── context/       # Provider & contexte React pour la grille
-│   ├── hooks/         # Hooks utilitaires
-│   ├── components/    # Composants Grid, Overlay, Control...
-│   ├── types/         # Typescript types
-│   └── index.ts       # Export centralisé
-└── App.tsx
-
+4. **Ouvrir dans le navigateur**
+```
+http://localhost:3000
 ```
 
-⚡ Utilisation de la Grid
+## 📝 Scripts disponibles
 
-Branchez la grille dans votre app principale :
+- `npm run dev` - Démarre le serveur de développement
+- `npm run build` - Construit l'application pour la production
+- `npm run start` - Démarre le serveur de production
+- `npm run lint` - Vérifie le code avec ESLint
+- `npm run type-check` - Vérifie les types TypeScript
 
-```bash
-import {
-  GridProvider,
-  Grid,
-  GridOverlay,
-  GridControl
-} from "./grid";
+## 🎨 Configuration du design system
 
-export default function App() {
-  return (
-    <GridProvider>
-      <GridControl />
-      <GridOverlay />
-      <div className="p-8">
-        <h1 className="text-2xl font-bold mb-4">Démo Grid System</h1>
-        <Grid>
-          <div className="bg-blue-100 p-4">Col 1</div>
-          <div className="bg-blue-200 p-4">Col 2</div>
-          <div className="bg-blue-300 p-4">Col 3</div>
-          <div className="bg-blue-400 p-4">Col 4</div>
-        </Grid>
-      </div>
-    </GridProvider>
-  );
+### Couleurs
+
+Les couleurs sont définies dans `src/config/colors.ts` :
+
+```typescript
+export const colors = {
+  primary: { /* Couleurs principales */ },
+  secondary: { /* Couleurs secondaires */ },
+  success: { /* Couleurs de succès */ },
+  warning: { /* Couleurs d'avertissement */ },
+  error: { /* Couleurs d'erreur */ },
+  neutral: { /* Couleurs neutres */ },
 }
-
 ```
-GridControl : bouton pour afficher/masquer la grille ou utiliser Alt+G
 
-GridOverlay : overlay visuel des colonnes, gouttières et marges (dev only)
+### Typographie
 
-Grid : composant grille responsive pour aligner vos UI
+La configuration typographique se trouve dans `src/config/typography.ts` :
 
-🎨 Personnalisation
-Breakpoints, colonnes, gouttières, marges :
-➔ Modifier src/grid/config/breakpoints.ts
-
-Couleur de l’overlay (colonnes, gouttières, marges) :
-➔ Personnaliser les props dans GridOverlay
-
-Exemple :
-
-```bash
-<GridOverlay color="#f81ce5" borderColor="#f81ce5" opacity={0.14} />
-
+```typescript
+export const typography = {
+  fontFamily: { /* Familles de polices */ },
+  fontSize: { /* Tailles de police */ },
+  lineHeight: { /* Hauteurs de ligne */ },
+  letterSpacing: { /* Espacement des lettres */ },
+}
 ```
-Gap et margin Tailwind :
-➔ Les mappings sont dans Grid.tsx, adapter si besoin (gap-x-, mx-, etc.)
 
-🧩 Avancé : Hook d’accès à la grid
-Accédez à l’état courant avec le hook :
+### Espacement
 
-```bash
-import { useGrid } from "./grid";
+Le système d'espacement est configuré dans `src/config/spacing.ts` :
 
-const { currentBreakpoint, isGridVisible, toggleGrid } = useGrid();
-
+```typescript
+export const spacing = {
+  // Valeurs d'espacement de 0 à 96
+}
 ```
-### Mode Dev Only
-L’Overlay Grid ne s’affiche jamais en production (`import.meta.env.PROD`), même si le raccourci ou le bouton sont activés.
 
+### Breakpoints
 
-🕹️ Raccourcis et Dev Mode
-Afficher/masquer la grille :
-➔ Raccourci clavier Alt+G
-➔ Ou bouton flottant GridControl
+Les points de rupture responsive sont dans `src/config/breakpoints.ts` :
 
-Démo responsive :
-➔ Redimensionner la fenêtre pour voir le changement de breakpoints (et donc de colonnes, gouttières, marges, overlay...)
-
-🛠️ Bonnes pratiques
-Centralisez la config dans breakpoints.ts pour la maintenance
-
-Utilisez l’Overlay pour caler vos designs (supprimez-le en prod !)
-
-Adaptez les couleurs et valeurs à votre charte UI
-
-Pour l’intégration prod, désactivez l’Overlay via une variable d’environnement si besoin
-
-🤔 FAQ
-Pourquoi ne pas générer dynamiquement les classes Tailwind ?
-➔ Tailwind purge toutes les classes dynamiques, donc seules les classes écrites en dur dans le code seront générées.
-
-Je ne vois pas la grille ou les marges/gouttières ?
-➔ Vérifiez que l’Overlay est bien activé, que les valeurs de breakpoints sont correctes, et que vous avez bien redimensionné la fenêtre pour tester tous les cas.
-
-🚩 TODO / Idées d’évolution
-Overlay avec dégradé ou pattern custom
-Tooltips px/rem sur chaque colonne/gouttière/marge
-Version dark mode
-
-
-
-👩‍💻 Crédit & Auteurs
-Template initié par cordelia guims / Cazalyn
-Feel free to fork, modifier, améliorer, pull-requester.
-Pour tout bug ou suggestion : cordeliaguims@outlook.com
-
-
-
-```yaml
-
-
-
-Tu veux une version EN, un ajout “screenshots”, une section “contribution”, ou une table récap’ des props et composants ?  
-Dis-moi, je te la complète direct selon ton branding/DA !
-
+```typescript
+export const breakpoints = {
+  xs: '475px',
+  sm: '640px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1280px',
+  '2xl': '1400px',
+}
 ```
+
+## 🧩 Composants UI
+
+### Container
+
+Composant pour centrer et limiter la largeur du contenu :
+
+```tsx
+import { Container } from '@/components/ui/Container'
+
+<Container size="lg">
+  {/* Contenu */}
+</Container>
+```
+
+### Button
+
+Composant bouton avec plusieurs variantes :
+
+```tsx
+import { Button } from '@/components/ui/Button'
+
+<Button variant="primary" size="lg">
+  Cliquez ici
+</Button>
+```
+
+### Card
+
+Composant carte pour organiser le contenu :
+
+```tsx
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
+
+<Card>
+  <CardHeader>
+    <CardTitle>Titre</CardTitle>
+  </CardHeader>
+  <CardContent>
+    Contenu de la carte
+  </CardContent>
+</Card>
+```
+
+## 🔧 Personnalisation
+
+### Modifier les couleurs
+
+1. Éditez `src/config/colors.ts`
+2. Les couleurs sont automatiquement appliquées via Tailwind CSS
+
+### Ajouter de nouveaux composants
+
+1. Créez votre composant dans `src/components/ui/`
+2. Utilisez les utilitaires de `src/lib/utils.ts` pour la gestion des classes CSS
+3. Exportez votre composant depuis le fichier index approprié
+
+### Modifier la typographie
+
+1. Éditez `src/config/typography.ts`
+2. Ajoutez vos polices Google Fonts dans `src/app/globals.css`
+
+## 📱 Responsive Design
+
+Le boilerplate utilise une approche mobile-first avec les breakpoints suivants :
+
+- **xs**: 475px et plus
+- **sm**: 640px et plus  
+- **md**: 768px et plus
+- **lg**: 1024px et plus
+- **xl**: 1280px et plus
+- **2xl**: 1400px et plus
+
+## 🔍 SEO
+
+Les métadonnées SEO sont configurées dans :
+- `src/app/layout.tsx` - Métadonnées globales
+- Pages individuelles - Métadonnées spécifiques
+
+## 🚀 Déploiement
+
+### Vercel (Recommandé)
+
+1. Connectez votre repository GitHub à Vercel
+2. Vercel détectera automatiquement Next.js
+3. Déployez en un clic
+
+### Autres plateformes
+
+1. Construisez l'application : `npm run build`
+2. Déployez le dossier `.next` selon votre plateforme
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à :
+
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Pousser vers la branche
+5. Ouvrir une Pull Request
+
+## 📄 Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## 🆘 Support
+
+Si vous avez des questions ou rencontrez des problèmes :
+
+- Ouvrez une issue sur GitHub
+- Consultez la documentation Next.js
+- Rejoignez la communauté Discord
+
+---
+
+**Bon développement ! 🎉**
