@@ -156,7 +156,7 @@ export default function DemoPage() {
             <div>
               <h4 className="font-semibold mb-4">Font Mono (JetBrains)</h4>
               <p className="font-mono text-sm">
-                const example = () => {<br />
+                const example = () =&gt; {<br />
                 &nbsp;&nbsp;return "Hello World";<br />
                 };
               </p>
