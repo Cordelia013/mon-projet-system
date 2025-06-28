@@ -156,7 +156,7 @@ export default function DemoPage() {
             <div>
               <h4 className="font-semibold mb-4">Font Mono (JetBrains)</h4>
               <p className="font-mono text-sm">
-                const example = () => {<br />
+                const example = () =&gt; {<br />
                 &nbsp;&nbsp;return "Hello World";<br />
                 };
               </p>
@@ -314,14 +314,14 @@ export default function DemoPage() {
             </CardHeader>
             <CardContent>
               <pre className="bg-secondary-900 text-secondary-100 p-4 rounded-lg text-sm overflow-x-auto">
-{`<div className="grid-container">
-  <div className="grid-col-12 md:grid-col-6 lg:grid-col-4">
+{`&lt;div className="grid-container"&gt;
+  &lt;div className="grid-col-12 md:grid-col-6 lg:grid-col-4"&gt;
     Contenu responsive
-  </div>
-  <div className="grid-col-12 md:grid-col-6 lg:grid-col-8">
+  &lt;/div&gt;
+  &lt;div className="grid-col-12 md:grid-col-6 lg:grid-col-8"&gt;
     Contenu principal
-  </div>
-</div>`}
+  &lt;/div&gt;
+&lt;/div&gt;`}
               </pre>
             </CardContent>
           </Card>
@@ -335,16 +335,16 @@ export default function DemoPage() {
 {`import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 
-<Card hover>
-  <CardHeader>
-    <CardTitle>Titre</CardTitle>
-  </CardHeader>
-  <CardContent>
-    <Button variant="primary">
+&lt;Card hover&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle&gt;Titre&lt;/CardTitle&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardContent&gt;
+    &lt;Button variant="primary"&gt;
       Action
-    </Button>
-  </CardContent>
-</Card>`}
+    &lt;/Button&gt;
+  &lt;/CardContent&gt;
+&lt;/Card&gt;`}
               </pre>
             </CardContent>
           </Card>
