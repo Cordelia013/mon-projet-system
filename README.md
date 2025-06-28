@@ -1,12 +1,13 @@
 # 🚀 NextJS Boilerplate
 
-Un boilerplate moderne et optimisé pour vos projets Next.js avec TypeScript, Tailwind CSS et React Server Components.
+Un boilerplate moderne et optimisé pour vos projets Next.js avec TypeScript, Tailwind CSS, React Server Components et Sanity CMS.
 
 ## ✨ Fonctionnalités
 
 - **Next.js 15** - Dernière version avec App Router et React Server Components
 - **TypeScript** - Configuration stricte pour un développement type-safe
 - **Tailwind CSS** - Framework CSS utilitaire avec configuration personnalisée
+- **Sanity CMS** - CMS headless moderne et flexible
 - **Structure optimisée** - Architecture modulaire avec séparation des préoccupations
 - **Configuration centralisée** - Couleurs, typographie, espacement et breakpoints
 - **Composants UI** - Bibliothèque de composants réutilisables et accessibles
@@ -23,7 +24,8 @@ src/
 │   └── page.tsx           # Page d'accueil
 ├── components/            # Composants React
 │   ├── ui/               # Composants UI réutilisables
-│   └── layout/           # Composants de mise en page
+│   ├── layout/           # Composants de mise en page
+│   └── sanity/           # Composants Sanity
 ├── config/               # Configuration centralisée
 │   ├── colors.ts         # Palette de couleurs
 │   ├── typography.ts     # Configuration typographique
@@ -31,8 +33,12 @@ src/
 │   ├── breakpoints.ts    # Points de rupture responsive
 │   └── animations.ts     # Animations et transitions
 ├── lib/                  # Utilitaires et helpers
+│   └── sanity.ts         # Configuration Sanity
 ├── types/                # Types TypeScript
 └── styles/               # Styles additionnels
+cms/                      # Sanity Studio
+├── schemaTypes/          # Schémas de contenu
+└── sanity.config.ts      # Configuration Sanity
 ```
 
 ## 🚀 Installation
@@ -48,23 +54,43 @@ cd nextjs-boilerplate
 npm install
 ```
 
-3. **Lancer le serveur de développement**
+3. **Configuration Sanity**
+```bash
+# Créer un projet Sanity (si pas déjà fait)
+cd cms
+npx sanity init
+
+# Copier les variables d'environnement
+cp env.local .env.local
+# Éditer .env.local avec vos identifiants Sanity
+```
+
+4. **Lancer le serveur de développement**
 ```bash
 npm run dev
 ```
 
-4. **Ouvrir dans le navigateur**
+5. **Lancer Sanity Studio**
+```bash
+npm run sanity
 ```
-http://localhost:3000
+
+6. **Ouvrir dans le navigateur**
+```
+Frontend: http://localhost:3000
+Sanity Studio: http://localhost:3333
 ```
 
 ## 📝 Scripts disponibles
 
-- `npm run dev` - Démarre le serveur de développement
+- `npm run dev` - Démarre le serveur de développement Next.js
 - `npm run build` - Construit l'application pour la production
 - `npm run start` - Démarre le serveur de production
 - `npm run lint` - Vérifie le code avec ESLint
 - `npm run type-check` - Vérifie les types TypeScript
+- `npm run sanity` - Démarre Sanity Studio en développement
+- `npm run sanity:build` - Construit Sanity Studio
+- `npm run sanity:deploy` - Déploie Sanity Studio
 
 ## 🎨 Configuration du design system
 
@@ -164,6 +190,39 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 </Card>
 ```
 
+## 📚 Sanity CMS
+
+### Schémas de contenu
+
+Le CMS inclut les schémas suivants :
+
+- **Page** - Pages statiques du site
+- **Post** - Articles de blog
+- **Author** - Auteurs des articles
+- **Category** - Catégories d'articles
+
+### Utilisation des données Sanity
+
+```tsx
+import { client, queries } from '@/lib/sanity'
+
+// Récupérer tous les articles
+const posts = await client.fetch(queries.getAllPosts)
+
+// Récupérer un article par slug
+const post = await client.fetch(queries.getPostBySlug, { slug: 'mon-article' })
+```
+
+### Composant PortableText
+
+Pour afficher le contenu riche de Sanity :
+
+```tsx
+import { PortableText } from '@/components/sanity/PortableText'
+
+<PortableText value={post.content} />
+```
+
 ## 🔧 Personnalisation
 
 ### Modifier les couleurs
@@ -182,6 +241,12 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 1. Éditez `src/config/typography.ts`
 2. Ajoutez vos polices Google Fonts dans `src/app/globals.css`
 
+### Ajouter des schémas Sanity
+
+1. Créez un nouveau fichier dans `cms/schemaTypes/`
+2. Ajoutez le schéma à `cms/schemaTypes/index.ts`
+3. Redémarrez Sanity Studio
+
 ## 📱 Responsive Design
 
 Le boilerplate utilise une approche mobile-first avec les breakpoints suivants :
@@ -198,14 +263,24 @@ Le boilerplate utilise une approche mobile-first avec les breakpoints suivants :
 Les métadonnées SEO sont configurées dans :
 - `src/app/layout.tsx` - Métadonnées globales
 - Pages individuelles - Métadonnées spécifiques
+- Schémas Sanity - Champs SEO personnalisés
 
 ## 🚀 Déploiement
 
 ### Vercel (Recommandé)
 
 1. Connectez votre repository GitHub à Vercel
-2. Vercel détectera automatiquement Next.js
-3. Déployez en un clic
+2. Ajoutez les variables d'environnement Sanity
+3. Vercel détectera automatiquement Next.js
+4. Déployez en un clic
+
+### Variables d'environnement
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your-api-token
+```
 
 ### Autres plateformes
 
@@ -232,6 +307,7 @@ Si vous avez des questions ou rencontrez des problèmes :
 
 - Ouvrez une issue sur GitHub
 - Consultez la documentation Next.js
+- Consultez la documentation Sanity
 - Rejoignez la communauté Discord
 
 ---
