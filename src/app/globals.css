@@ -56,6 +56,70 @@
   .card {
     @apply rounded-lg border border-secondary-200 bg-white p-6 shadow-sm;
   }
+
+  /* Grid utilities */
+  .grid-container {
+    @apply grid grid-cols-12 gap-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .grid-col-1 { @apply col-span-1; }
+  .grid-col-2 { @apply col-span-2; }
+  .grid-col-3 { @apply col-span-3; }
+  .grid-col-4 { @apply col-span-4; }
+  .grid-col-5 { @apply col-span-5; }
+  .grid-col-6 { @apply col-span-6; }
+  .grid-col-7 { @apply col-span-7; }
+  .grid-col-8 { @apply col-span-8; }
+  .grid-col-9 { @apply col-span-9; }
+  .grid-col-10 { @apply col-span-10; }
+  .grid-col-11 { @apply col-span-11; }
+  .grid-col-12 { @apply col-span-12; }
+  
+  /* Responsive grid utilities */
+  @screen sm {
+    .sm\:grid-col-1 { @apply col-span-1; }
+    .sm\:grid-col-2 { @apply col-span-2; }
+    .sm\:grid-col-3 { @apply col-span-3; }
+    .sm\:grid-col-4 { @apply col-span-4; }
+    .sm\:grid-col-5 { @apply col-span-5; }
+    .sm\:grid-col-6 { @apply col-span-6; }
+    .sm\:grid-col-7 { @apply col-span-7; }
+    .sm\:grid-col-8 { @apply col-span-8; }
+    .sm\:grid-col-9 { @apply col-span-9; }
+    .sm\:grid-col-10 { @apply col-span-10; }
+    .sm\:grid-col-11 { @apply col-span-11; }
+    .sm\:grid-col-12 { @apply col-span-12; }
+  }
+  
+  @screen md {
+    .md\:grid-col-1 { @apply col-span-1; }
+    .md\:grid-col-2 { @apply col-span-2; }
+    .md\:grid-col-3 { @apply col-span-3; }
+    .md\:grid-col-4 { @apply col-span-4; }
+    .md\:grid-col-5 { @apply col-span-5; }
+    .md\:grid-col-6 { @apply col-span-6; }
+    .md\:grid-col-7 { @apply col-span-7; }
+    .md\:grid-col-8 { @apply col-span-8; }
+    .md\:grid-col-9 { @apply col-span-9; }
+    .md\:grid-col-10 { @apply col-span-10; }
+    .md\:grid-col-11 { @apply col-span-11; }
+    .md\:grid-col-12 { @apply col-span-12; }
+  }
+  
+  @screen lg {
+    .lg\:grid-col-1 { @apply col-span-1; }
+    .lg\:grid-col-2 { @apply col-span-2; }
+    .lg\:grid-col-3 { @apply col-span-3; }
+    .lg\:grid-col-4 { @apply col-span-4; }
+    .lg\:grid-col-5 { @apply col-span-5; }
+    .lg\:grid-col-6 { @apply col-span-6; }
+    .lg\:grid-col-7 { @apply col-span-7; }
+    .lg\:grid-col-8 { @apply col-span-8; }
+    .lg\:grid-col-9 { @apply col-span-9; }
+    .lg\:grid-col-10 { @apply col-span-10; }
+    .lg\:grid-col-11 { @apply col-span-11; }
+    .lg\:grid-col-12 { @apply col-span-12; }
+  }
 }
 
 @layer utilities {
@@ -73,5 +137,14 @@
   
   .animate-slide-down {
     animation: slideDown 0.3s ease-out;
+  }
+
+  /* Grid debugging utilities */
+  .debug-grid {
+    @apply grid-debug;
+  }
+  
+  .debug-container {
+    @apply container-debug;
   }
 }

@@ -1,4 +1,4 @@
-export const colors = {
+module.exports = {
   // Brand colors
   primary: {
     50: '#eff6ff',
@@ -80,7 +80,11 @@ export const colors = {
     900: '#171717',
     950: '#0a0a0a',
   },
-} as const
-
-export type ColorScale = keyof typeof colors
-export type ColorShade = keyof typeof colors.primary
+  // Grid colors for development
+  grid: {
+    line: '#e5e7eb',
+    background: 'rgba(59, 130, 246, 0.05)',
+    column: 'rgba(59, 130, 246, 0.1)',
+    gutter: 'rgba(239, 68, 68, 0.1)',
+  },
+}

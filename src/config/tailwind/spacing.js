@@ -1,4 +1,4 @@
-export const spacing = {
+module.exports = {
   px: '1px',
   0: '0px',
   0.5: '0.125rem',
@@ -34,15 +34,4 @@ export const spacing = {
   72: '18rem',
   80: '20rem',
   96: '24rem',
-} as const
-
-export const containerSizes = {
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
-  '2xl': '1400px',
-} as const
-
-export type SpacingScale = keyof typeof spacing
-export type ContainerSize = keyof typeof containerSizes
+}

@@ -6,13 +6,14 @@ Un boilerplate moderne et optimisé pour vos projets Next.js avec TypeScript, Ta
 
 - **Next.js 15** - Dernière version avec App Router et React Server Components
 - **TypeScript** - Configuration stricte pour un développement type-safe
-- **Tailwind CSS** - Framework CSS utilitaire avec configuration personnalisée
+- **Tailwind CSS Modulaire** - Configuration modulaire avec système de grille avancé
 - **Sanity CMS** - CMS headless moderne et flexible
 - **Structure optimisée** - Architecture modulaire avec séparation des préoccupations
 - **Configuration centralisée** - Couleurs, typographie, espacement et breakpoints
 - **Composants UI** - Bibliothèque de composants réutilisables et accessibles
 - **SEO optimisé** - Métadonnées configurées pour le référencement
 - **Responsive design** - Design adaptatif pour tous les appareils
+- **Grid System** - Système de grille avec overlay de débogage (Alt+G)
 
 ## 🏗️ Structure du projet
 
@@ -24,14 +25,18 @@ src/
 │   └── page.tsx           # Page d'accueil
 ├── components/            # Composants React
 │   ├── ui/               # Composants UI réutilisables
+│   │   └── GridOverlay.tsx # Overlay de grille (Alt+G)
 │   ├── layout/           # Composants de mise en page
 │   └── sanity/           # Composants Sanity
 ├── config/               # Configuration centralisée
-│   ├── colors.ts         # Palette de couleurs
-│   ├── typography.ts     # Configuration typographique
-│   ├── spacing.ts        # Système d'espacement
-│   ├── breakpoints.ts    # Points de rupture responsive
-│   └── animations.ts     # Animations et transitions
+│   └── tailwind/         # Configuration Tailwind modulaire
+│       ├── colors.js     # Palette de couleurs
+│       ├── fonts.js      # Configuration des polices
+│       ├── screens.js    # Points de rupture
+│       ├── spacing.js    # Système d'espacement
+│       ├── grid.js       # Configuration de grille
+│       ├── animations.js # Animations et transitions
+│       └── typography.js # Configuration typographique
 ├── lib/                  # Utilitaires et helpers
 │   └── sanity.ts         # Configuration Sanity
 ├── types/                # Types TypeScript
@@ -40,6 +45,40 @@ cms/                      # Sanity Studio
 ├── schemaTypes/          # Schémas de contenu
 └── sanity.config.ts      # Configuration Sanity
 ```
+
+## 🎨 Configuration Tailwind Modulaire
+
+### Structure modulaire
+
+La configuration Tailwind est maintenant organisée en modules séparés dans `src/config/tailwind/` :
+
+- **colors.js** - Palette de couleurs complète avec couleurs sémantiques
+- **fonts.js** - Configuration des familles de polices
+- **screens.js** - Points de rupture responsive
+- **spacing.js** - Système d'espacement cohérent
+- **grid.js** - Configuration du système de grille
+- **animations.js** - Animations et transitions
+- **typography.js** - Configuration typographique
+
+### Système de grille
+
+Le système de grille inclut :
+
+- **12 colonnes** par défaut
+- **Gaps configurables** (0 à 24)
+- **Marges automatiques** et personnalisées
+- **Container responsive** avec max-widths
+- **Utilitaires de grille** (.grid-col-1 à .grid-col-12)
+- **Classes responsive** (sm:, md:, lg:)
+
+### Grid Overlay (Alt+G)
+
+Un overlay de grille visuel pour le développement :
+
+- **Activation** : Alt+G
+- **Affichage** : Grille de 12 colonnes avec gaps
+- **Informations** : Nombre de colonnes, gap, max-width
+- **Couleurs** : Configurables dans colors.js
 
 ## 🚀 Installation
 
@@ -92,59 +131,36 @@ Sanity Studio: http://localhost:3333
 - `npm run sanity:build` - Construit Sanity Studio
 - `npm run sanity:deploy` - Déploie Sanity Studio
 
-## 🎨 Configuration du design system
+## 🎨 Utilisation du système de grille
 
-### Couleurs
+### Grid Container
 
-Les couleurs sont définies dans `src/config/colors.ts` :
-
-```typescript
-export const colors = {
-  primary: { /* Couleurs principales */ },
-  secondary: { /* Couleurs secondaires */ },
-  success: { /* Couleurs de succès */ },
-  warning: { /* Couleurs d'avertissement */ },
-  error: { /* Couleurs d'erreur */ },
-  neutral: { /* Couleurs neutres */ },
-}
+```tsx
+<div className="grid-container">
+  <div className="grid-col-12 md:grid-col-6 lg:grid-col-4">
+    Contenu responsive
+  </div>
+</div>
 ```
 
-### Typographie
+### Grid Overlay
 
-La configuration typographique se trouve dans `src/config/typography.ts` :
+Appuyez sur **Alt+G** pour afficher/masquer l'overlay de grille pendant le développement.
 
-```typescript
-export const typography = {
-  fontFamily: { /* Familles de polices */ },
-  fontSize: { /* Tailles de police */ },
-  lineHeight: { /* Hauteurs de ligne */ },
-  letterSpacing: { /* Espacement des lettres */ },
-}
-```
+### Classes utilitaires
 
-### Espacement
+```css
+/* Colonnes de base */
+.grid-col-1 à .grid-col-12
 
-Le système d'espacement est configuré dans `src/config/spacing.ts` :
+/* Responsive */
+.sm:grid-col-1 à .sm:grid-col-12
+.md:grid-col-1 à .md:grid-col-12
+.lg:grid-col-1 à .lg:grid-col-12
 
-```typescript
-export const spacing = {
-  // Valeurs d'espacement de 0 à 96
-}
-```
-
-### Breakpoints
-
-Les points de rupture responsive sont dans `src/config/breakpoints.ts` :
-
-```typescript
-export const breakpoints = {
-  xs: '475px',
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
-  '2xl': '1400px',
-}
+/* Debug */
+.debug-grid - Affiche une grille de débogage
+.debug-container - Outline le container
 ```
 
 ## 🧩 Composants UI
@@ -227,7 +243,7 @@ import { PortableText } from '@/components/sanity/PortableText'
 
 ### Modifier les couleurs
 
-1. Éditez `src/config/colors.ts`
+1. Éditez `src/config/tailwind/colors.js`
 2. Les couleurs sont automatiquement appliquées via Tailwind CSS
 
 ### Ajouter de nouveaux composants
@@ -236,9 +252,15 @@ import { PortableText } from '@/components/sanity/PortableText'
 2. Utilisez les utilitaires de `src/lib/utils.ts` pour la gestion des classes CSS
 3. Exportez votre composant depuis le fichier index approprié
 
+### Modifier la grille
+
+1. Éditez `src/config/tailwind/grid.js`
+2. Ajustez le nombre de colonnes, gaps, marges
+3. Personnalisez les couleurs de l'overlay dans `colors.js`
+
 ### Modifier la typographie
 
-1. Éditez `src/config/typography.ts`
+1. Éditez `src/config/tailwind/typography.js`
 2. Ajoutez vos polices Google Fonts dans `src/app/globals.css`
 
 ### Ajouter des schémas Sanity

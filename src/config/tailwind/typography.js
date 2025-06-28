@@ -1,32 +1,4 @@
-export const typography = {
-  fontFamily: {
-    sans: [
-      'Inter',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'Segoe UI',
-      'Roboto',
-      'Oxygen',
-      'Ubuntu',
-      'Cantarell',
-      'sans-serif',
-    ],
-    mono: [
-      'JetBrains Mono',
-      'Fira Code',
-      'Monaco',
-      'Consolas',
-      'Liberation Mono',
-      'Courier New',
-      'monospace',
-    ],
-    serif: [
-      'Playfair Display',
-      'Georgia',
-      'Times New Roman',
-      'serif',
-    ],
-  },
+module.exports = {
   fontSize: {
     xs: ['0.75rem', { lineHeight: '1rem' }],
     sm: ['0.875rem', { lineHeight: '1.25rem' }],
@@ -58,20 +30,15 @@ export const typography = {
     wider: '0.05em',
     widest: '0.1em',
   },
-} as const
-
-export const fontWeights = {
-  thin: 100,
-  extralight: 200,
-  light: 300,
-  normal: 400,
-  medium: 500,
-  semibold: 600,
-  bold: 700,
-  extrabold: 800,
-  black: 900,
-} as const
-
-export type FontFamily = keyof typeof typography.fontFamily
-export type FontSize = keyof typeof typography.fontSize
-export type FontWeight = keyof typeof fontWeights
+  fontWeight: {
+    thin: '100',
+    extralight: '200',
+    light: '300',
+    normal: '400',
+    medium: '500',
+    semibold: '600',
+    bold: '700',
+    extrabold: '800',
+    black: '900',
+  },
+}
